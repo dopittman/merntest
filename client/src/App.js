@@ -1,24 +1,24 @@
 import React from 'react';
 import './App.css';
-import {Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-import List from './pages/List'
+import List from './pages/List';
+import Test from './pages/Test';
+import Gifs from './pages/Gifs';
 
 
-function App() {
-  const App = () => (
+const App = () => {
+  return (
     <div>
+    <Router>
+    <Home />
       <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route path='/list' component={List}/>
+        <Route path='/list' exact component={List}/>
+        <Route path='/express/test' exact component={Test} />
+        <Route path='/express/gifs' exact component={Gifs} />
       </Switch>
+    </Router>
     </div>
   )
-  return (
-    <Switch>
-      <App/>
-    </Switch>
-  );
 }
-
 export default App;

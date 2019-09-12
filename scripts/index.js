@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fetch = require("node-fetch");
 
 const app = express();
 
@@ -13,12 +14,33 @@ app.get('/api/getList', (req,res) => {
     console.log('Sent list of items');
 });
 
+app.get('/express/test', (req, res)=>{
+
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(json => {
+    return res.send(json)})
+  .catch(err => console.log(err))
+});
+
+app.get('/express/gifs', (req, res)=>{
+  const baseURL = 'https://api.tenor.com/v1/trending?q=smile&key=MG4MF1SUHYHY&limit=5';
+
+  fetch(baseURL).
+  then(response => response.json())
+  .then(json => {
+    console.log(json)
+    return res.send(json)
+  })
+  .catch(err => console.log(err))
+});
+
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(port, () => {console.log(`App is listening on port ${PORT}`);
+app.listen(PORT, () => {console.log(`App is listening on port ${PORT}`);
 });
 
