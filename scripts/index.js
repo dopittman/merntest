@@ -11,7 +11,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('/api/getList', (req,res) => {
     var list = ["item1", "item2", "item3"];
     res.json(list);
-    console.log('Sent list of items');
 });
 
 app.get('/express/test', (req, res)=>{
@@ -24,7 +23,7 @@ app.get('/express/test', (req, res)=>{
 });
 
 app.get('/express/gifs', (req, res)=>{
-  const baseURL = 'https://api.tenor.com/v1/trending?q=smile&key=MG4MF1SUHYHY&limit=5';
+  const baseURL = '<*****API URL/API KEY*****>';
 
   fetch(baseURL).
   then(response => response.json())
